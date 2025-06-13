@@ -4,12 +4,8 @@ server:
 eureka:
   instance:
     hostname: localhost
-    # Questi valori sono impostati su false perché:
-    # - fetchRegistry: non vogliamo che Eureka server scarichi il registro dei servizi (non è un client).
-    # - registerWithEureka: non vogliamo che Eureka server si registri presso se stesso come un normale microservizio.
-    client:
-      fetchRegistry: false
-      registerWithEureka: false
-    # è l'url in cui il mio server eureka esporrà le sue funzionalità agli altri microservizi.
-      serviceUrl:
-        defaultZone: http://&{eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  client:
+    fetchRegistry: false
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
